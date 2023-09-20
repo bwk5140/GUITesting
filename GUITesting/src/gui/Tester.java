@@ -8,6 +8,8 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static java.lang.Thread.sleep;
+
 public class Tester
 {
     public static int resultVal = 0, num1, num2, result;
@@ -25,7 +27,7 @@ public class Tester
             num1 = scnr.nextInt();
             num2 = scnr.nextInt();
             result = scnr.nextInt();
-
+            sleep(1000);
             this.wait();
         }
         complete = true;
@@ -33,7 +35,7 @@ public class Tester
 
     synchronized void fillTextField() throws Exception
     {
-        Thread.sleep(500);
+        //Thread.sleep(500);
         Toolkit tk = Toolkit.getDefaultToolkit();
         AWTEventListener listener = new AWTEventListener()
         {
@@ -50,21 +52,9 @@ public class Tester
                         al.add(event);
                     }
 
-                    if (al.size() == 3)
-                    {
-                        al.add(event);
-                        JTextField jtf1 = (JTextField) al.get(0).getSource();
-                        JTextField jtf2 = (JTextField) al.get(1).getSource();
-                        JTextField jtf3 = (JTextField) al.get(2).getSource();
-                        jtf1.setText("100");
-                        jtf2.setText("200");
-                        jtf3.setText("300");
-                    }
-
-                    if (al.size() > 3)
+                    if (al.size() % 3 == 0 && al.size() == 3)
                     {
                         certify = false;
-                        al.add(event);
                         JTextField jtf1 = (JTextField) al.get(0).getSource();
                         JTextField jtf2 = (JTextField) al.get(1).getSource();
                         JTextField jtf3 = (JTextField) al.get(2).getSource();
@@ -75,6 +65,7 @@ public class Tester
                         resultVal = Integer.parseInt(input);
 
                         certify = true;
+                        al.clear();
 
                         //System.out.println(certify);
                     }
@@ -84,6 +75,7 @@ public class Tester
         };
 
         this.notify();
+        //sleep(100);
         tk.addAWTEventListener(listener, AWTEvent.MOUSE_EVENT_MASK);
         if (gui == null)
             gui = new MyGUI();

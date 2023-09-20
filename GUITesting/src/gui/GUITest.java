@@ -20,6 +20,7 @@ public class GUITest
         Tester tester = new Tester();
         Compare compare = new Compare(tester);
         GuiTester guiTester = new GuiTester(tester);
+        compare.setPriority(10);
         compare.start();
         guiTester.start();
         //compare.setPriority(10);

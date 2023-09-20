@@ -10,7 +10,7 @@ public class GuiTester extends Thread
     }
     public void run()
     {
-        while(!this.tester.complete)
+        while(!Tester.complete)
         {
             try
             {
