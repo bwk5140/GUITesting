@@ -10,6 +10,10 @@ import java.util.Scanner;
 
 import static java.lang.Thread.sleep;
 
+/**
+ *
+ * @author Brian Karimi Wachira, Katie Killian, Nicole Vadillo
+ */
 public class Tester
 {
     public static int resultVal = 0, num1, num2, result;
@@ -27,7 +31,6 @@ public class Tester
         String input;
         while (scnr.hasNextInt())
         {
-            //complete = false;
             num1 = scnr.nextInt();
             num2 = scnr.nextInt();
             result = scnr.nextInt();
@@ -53,7 +56,6 @@ public class Tester
 
     synchronized void fillTextField() throws Exception
     {
-        //Thread.sleep(500);
         Toolkit tk = Toolkit.getDefaultToolkit();
 
         AWTEventListener listener = new AWTEventListener()

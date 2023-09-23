@@ -7,7 +7,7 @@ package gui;
 
 /**
  *
- * @author wxw18
+ * @author Brian Karimi Wachira, Katie Killian, Nicole Vadillo
  */
 public class GUITest
 {
@@ -22,10 +22,8 @@ public class GUITest
             Tester tester = new Tester();
             Compare compare = new Compare(tester);
             GuiTester guiTester = new GuiTester(tester);
-            //compare.setPriority(10);
             compare.start();
             guiTester.start();
-            //compare.setPriority(10);
         }
         catch(Exception e)
         {

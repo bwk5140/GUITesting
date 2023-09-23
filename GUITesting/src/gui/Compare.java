@@ -1,5 +1,9 @@
 package gui;
 
+/**
+ *
+ * @author Brian Karimi Wachira, Katie Killian, Nicole Vadillo
+ */
 public class Compare extends Thread
 {
 
