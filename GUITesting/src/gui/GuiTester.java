@@ -15,7 +15,8 @@ public class GuiTester extends Thread
             try
             {
                 tester.fillTextField();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 System.out.println(ex.getMessage());
             }

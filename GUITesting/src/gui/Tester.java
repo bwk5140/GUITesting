@@ -15,20 +15,38 @@ public class Tester
     public static int resultVal = 0, num1, num2, result;
     public static boolean complete = false;
     public static boolean certify = false;
+    static JTextField jtf1 = new JTextField();
+    static JTextField jtf2 = new JTextField();
+    static JTextField jtf3 = new JTextField();
+    static JButton jbtn = new JButton();
     MyGUI gui = new MyGUI();
     synchronized void read() throws Exception
     {
         FileInputStream inFile = new FileInputStream("C:\\Users\\brian\\Documents\\Fall 2023\\SWENG 431\\GUITesting\\GUITesting\\src\\gui\\input.txt");
         Scanner scnr = new Scanner(inFile);
-
-        while(scnr.hasNextInt())
+        String input;
+        while (scnr.hasNextInt())
         {
             //complete = false;
             num1 = scnr.nextInt();
             num2 = scnr.nextInt();
             result = scnr.nextInt();
-            sleep(1000);
-            this.wait();
+            sleep(100);
+
+            while(!certify)
+                this.wait();
+
+            jtf1.setText(Integer.toString(num1));
+            jtf2.setText(Integer.toString(num2));
+            jbtn.doClick();
+            input = jtf3.getText();
+            resultVal = Integer.parseInt(input);
+
+            if (resultVal != result)
+            {
+                throw new Exception("Test failure!");
+            }
+            sleep(1500);
         }
         complete = true;
     }
@@ -37,6 +55,7 @@ public class Tester
     {
         //Thread.sleep(500);
         Toolkit tk = Toolkit.getDefaultToolkit();
+
         AWTEventListener listener = new AWTEventListener()
         {
             ArrayList<AWTEvent> al = new ArrayList<>();
@@ -44,42 +63,35 @@ public class Tester
             @Override
             public void eventDispatched(AWTEvent event)
             {
-                String input;
-                if (al.size() < 3)
+                if (al.size() < 4)
                 {
                     if (event.getID() == MouseEvent.MOUSE_PRESSED)
                     {
                         al.add(event);
                     }
 
-                    if (al.size() % 3 == 0 && al.size() == 3)
+                    if (al.size() == 4)
                     {
-                        certify = false;
-                        JTextField jtf1 = (JTextField) al.get(0).getSource();
-                        JTextField jtf2 = (JTextField) al.get(1).getSource();
-                        JTextField jtf3 = (JTextField) al.get(2).getSource();
-                        jtf1.setText(Integer.toString(num1));
-                        jtf2.setText(Integer.toString(num2));
-                        jtf3.setText(Integer.toString(num1 + num2));
-                        input = jtf3.getText();
-                        resultVal = Integer.parseInt(input);
+                        jtf1 = (JTextField) al.get(0).getSource();
+                        jtf2 = (JTextField) al.get(1).getSource();
+                        jtf3 = (JTextField) al.get(2).getSource();
+                        jbtn = (JButton) al.get(3).getSource();
+                        jtf1.setText("100");
+                        jtf2.setText("200");
+                        jtf3.setText("300");
 
                         certify = true;
-                        al.clear();
-
-                        //System.out.println(certify);
                     }
-
                 }
             }
         };
 
-        this.notify();
-        //sleep(100);
         tk.addAWTEventListener(listener, AWTEvent.MOUSE_EVENT_MASK);
         if (gui == null)
             gui = new MyGUI();
         gui.setSize(400,300);
         gui.setVisible(true);
+        this.notify();
+        sleep(500);
     }
 }

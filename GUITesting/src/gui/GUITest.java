@@ -17,12 +17,19 @@ public class GUITest
     public static void main(String[] args) 
     {
         // TODO code application logic here
-        Tester tester = new Tester();
-        Compare compare = new Compare(tester);
-        GuiTester guiTester = new GuiTester(tester);
-        compare.setPriority(10);
-        compare.start();
-        guiTester.start();
-        //compare.setPriority(10);
+        try
+        {
+            Tester tester = new Tester();
+            Compare compare = new Compare(tester);
+            GuiTester guiTester = new GuiTester(tester);
+            //compare.setPriority(10);
+            compare.start();
+            guiTester.start();
+            //compare.setPriority(10);
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
     }
 }
