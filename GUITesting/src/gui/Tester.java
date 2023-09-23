@@ -34,7 +34,6 @@ public class Tester
             num1 = scnr.nextInt();
             num2 = scnr.nextInt();
             result = scnr.nextInt();
-            sleep(100);
 
             while(!certify)
                 this.wait();
@@ -47,9 +46,9 @@ public class Tester
 
             if (resultVal != result)
             {
-                throw new Exception("Test failure!");
+                throw new Exception("\n\nTest failure!");
             }
-            sleep(1500);
+            sleep(1000);
         }
         complete = true;
     }
@@ -94,6 +93,6 @@ public class Tester
         gui.setSize(400,300);
         gui.setVisible(true);
         this.notify();
-        sleep(500);
+        sleep(100);
     }
 }
